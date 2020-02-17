@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import UsersList from './components/UsersList'
+import UsersList from "./components/UsersList";
+import AddUser from "./components/AddUser";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      users: []
+      users: [],
+      username: "",
+      email: ""
     };
+    this.addUser = this.addUser.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +31,29 @@ class App extends Component {
       });
   }
 
+  addUser(event) {
+    event.preventDefault();
+    const data = {
+      username: this.state.username,
+      email: this.state.email
+    };
+    axios
+      .post("http://127.0.0.1/users", data)
+      .then(res => {
+        this.getUsers();
+        this.setState({ username: "", email: "" });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  handleChange(event) {
+    const obj = {};
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
+  }
+
   render() {
     return (
       <div className="container">
@@ -34,6 +62,13 @@ class App extends Component {
             <br />
             <h1>All Users</h1>
             <hr />
+            <br />
+            <AddUser
+              username={this.state.username}
+              email={this.state.email}
+              handleChange={this.handleChange}
+              addUser={this.addUser}
+            />
             <br />
             <UsersList users={this.state.users} />
           </div>
