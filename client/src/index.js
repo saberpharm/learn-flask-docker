@@ -1,12 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import axios from "axios";
+import UsersList from './components/UsersList'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      users: []
+    };
+  }
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  componentDidMount() {
+    this.getUsers();
+  }
+
+  getUsers() {
+    axios
+      .get("http://127.0.0.1/users")
+      .then(res => {
+        this.setState({ users: res.data.data.users });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <br />
+            <h1>All Users</h1>
+            <hr />
+            <br />
+            <UsersList users={this.state.users} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
