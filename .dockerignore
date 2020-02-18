@@ -4,3 +4,4 @@ Dockerfile-dev
 Dockerfile-prod
 htmlcov
 node_modules
+migrations
