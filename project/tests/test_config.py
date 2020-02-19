@@ -26,6 +26,7 @@ class TestDevelopmentConfig(TestCase):
         self.assertTrue(app.config['TOKEN_EXPIRATION_DAYS'] == 30)
         self.assertTrue(app.config['TOKEN_EXPIRATION_SECONDS'] == 0)
 
+
 class TestTestingConfig(TestCase):
     def create_app(self):
         app.config.from_object('project.config.TestingConfig')
@@ -61,6 +62,7 @@ class TestProductionConfig(TestCase):
         self.assertTrue(app.config['BCRYPT_LOG_ROUNDS'] == 13)
         self.assertTrue(app.config['TOKEN_EXPIRATION_DAYS'] == 30)
         self.assertTrue(app.config['TOKEN_EXPIRATION_SECONDS'] == 0)
+
 
 if __name__ == '__main__':
     unittest.main()
