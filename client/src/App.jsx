@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 import UsersList from "./components/UsersList";
-import AddUser from "./components/AddUser";
 import About from "./components/About";
 import NavBar from "./components/NavBar";
 import Form from "./components/Form";
 import Logout from "./components/Logout";
-import UserStatus from "./components/UserStatus"
+import UserStatus from "./components/UserStatus";
 
 class App extends Component {
   constructor() {
@@ -111,7 +110,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar title={this.state.title} isAuthenticated={this.state.isAuthenticated} />
+        <NavBar
+          title={this.state.title}
+          isAuthenticated={this.state.isAuthenticated}
+        />
         <div className="container">
           <div className="row">
             <div className="col-md-6">
@@ -120,24 +122,10 @@ class App extends Component {
                 <Route
                   exact
                   path="/"
-                  render={() => (
-                    <div>
-                      <h1>All Users</h1>
-                      <hr />
-                      <br />
-                      <AddUser
-                        username={this.state.username}
-                        email={this.state.email}
-                        handleChange={this.handleChange}
-                        addUser={this.addUser}
-                      />
-                      <br />
-                      <UsersList users={this.state.users} />
-                    </div>
-                  )}
+                  render={() => <UsersList users={this.state.users} />}
                 />
                 <Route exact path="/about" component={About} />
-                <Route exact path='/status' component={UserStatus}/>
+                <Route exact path="/status" component={UserStatus} />
                 <Route
                   exact
                   path="/register"
