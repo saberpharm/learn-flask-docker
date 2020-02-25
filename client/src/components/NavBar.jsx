@@ -14,7 +14,7 @@ const NavBar = props => (
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/about">About</Nav.Link>
           {window.localStorage.authToken && (
-            <Nav.Link href="/status">Status</Nav.Link>
+            <Nav.Link href="/status">User Status</Nav.Link>
           )}
         </Nav>
         <Nav>
