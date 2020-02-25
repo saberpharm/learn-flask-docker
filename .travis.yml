@@ -3,6 +3,8 @@ node_js: '9'
 
 before_install:
   - stty cols 80
+  - sudo apt-key update
+  - sudo apt-get update
   
 dist: trusty
 sudo: required
@@ -35,7 +37,7 @@ before_script:
   - docker-compose -f docker-compose-prod.yml up --build -d
 
 script:
-  - bash test.sh stage
+  - bash test.sh dev
 
 after_script:
   - docker-compose -f docker-compose-prod.yml down
