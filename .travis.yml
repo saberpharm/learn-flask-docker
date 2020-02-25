@@ -31,7 +31,7 @@ before_script:
   - docker-compose -f docker-compose-dev.yml up --build -d
 
 script:
-  - bash test.sh stage
+  - bash test.sh dev
 
 after_script:
   - docker-compose -f docker-compose-dev.yml down
