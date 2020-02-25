@@ -25,7 +25,7 @@ inspect $? users-lint
 if [[ "${env}" == "dev" ]]; then
     docker-compose -f $file run client npm run coverage
     inspect $? client
-    npx testcafe chrome e2e
+    npx testcafe "chrome:headless" e2e
     inspect $? e2e
 else
     npx testcafe chrome e2e/index.test.js

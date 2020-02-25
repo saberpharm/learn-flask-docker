@@ -7,7 +7,7 @@ const UsersList = props => {
       <h1>All Users</h1>
       <hr />
       <br />
-      <Table striped bordered condensed hover>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>User ID</th>

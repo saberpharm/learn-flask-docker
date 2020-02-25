@@ -1,6 +1,5 @@
 import { Selector } from "testcafe";
-import {makestr} from "./util";
-
+import { makestr } from "./util";
 
 const username = makestr(5);
 const email = `${username}@test.com`;
@@ -15,6 +14,16 @@ test(`should display the sign in form`, async t => {
     .expect(Selector("H1").withText("Login").exists)
     .ok()
     .expect(Selector("form").exists)
+    .ok()
+    .expect(Selector("input[disabled]").exists)
+    .ok()
+    .expect(Selector(".validation-list").exists)
+    .ok()
+    .expect(
+      Selector(".validation-list > .error")
+        .nth(0)
+        .withText("Email is required.").exists
+    )
     .ok();
 });
 

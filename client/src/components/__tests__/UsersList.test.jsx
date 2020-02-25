@@ -29,7 +29,6 @@ test("UsersList renders properly", () => {
   expect(table.length).toBe(1);
   expect(table.get(0).props.striped).toBe(true);
   expect(table.get(0).props.bordered).toBe(true);
-  expect(table.get(0).props.condensed).toBe(true);
   expect(table.get(0).props.hover).toBe(true);
   // table head
   expect(wrapper.find("thead").length).toBe(1);
